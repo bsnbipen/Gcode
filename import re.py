@@ -11,6 +11,8 @@ constant_1={"$global[1]":0.1,
 "$global[8]":(20/4)*60,
 }
 
+# ishwor dai is cooking masugit 
+
 default_value_dict={"X":0,"Y":0,"Z":0,"E":0}
 X_axis=[]
 Y_axis=[]
