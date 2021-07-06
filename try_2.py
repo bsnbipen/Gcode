@@ -1,0 +1,16 @@
+import numpy as np
+rg=np.random.default_rng(1)
+a= np.floor(10*rg.random((3,4)))
+#b=np.floor(10*rg.random((3,4)))
+print("a is:",a)
+b=a.copy()
+print("b is:",b)
+print("Is b and a point to the same object?",b is a)
+print("Is the element of b and a same?",b.base is a)
+print("Is the data of b, its own?",b.flags.owndata)
+b=b.reshape((2,6))
+print("a is(after b reshapes):",a)
+print("b is(after reshape):",b)
+b[0,4]=212
+print("b is (after b value changes:)",b)
+print("a is (after b values changes):",a)
