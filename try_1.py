@@ -24,7 +24,7 @@ dict_axes={"X":[],"Y":[],"Z":[]}
 
 
 
-
+pump_status=0
 info_array=np.array([1,0,[(0,0,0)]],dtype=object,ndmin=2)
 #print("At the start:",info_array)
 
@@ -35,9 +35,9 @@ def calculation(info_coord):
     fil_area=math.pi*math.pow(constant_print["rad_filament"],2)
     dist_trav=distance.cdist(info_array[-1][-1],info_coord[-1],'euclidean')
     extrusion=round(float((area_road*dist_trav)/(fil_area)),5)
-    print("The extrusion is:",extrusion)
+    return extrusion
 
-def convert_dictpara(param,pump_info): 
+def coord_pump_on(param,pump_info): 
     default_dict={"X":0,"Y":0,"Z":0}
     num=1
     info_list=[] 
@@ -66,18 +66,31 @@ def convert_dictpara(param,pump_info):
     info_list.append(pump_info)
     info_list.append(info_axes)
     #print(info_list)
-    calculation(info_list)
+    val_e=calculation(info_list)
     temp_array=np.vstack((info_array,info_list))
     #print(temp_array)
     return temp_array
     
-"""
-def exclude_f(take_dict):
-   for i,v in enumerate(take_dict):
-        if (re.search(r"\F\$(global)\[\d\]",v) or:
-            del take_dict[i]
-   return take_dict
-"""
+
+
+def take_conformal_code(line_value):                    #takes the location of the file
+    #with open(location,'r') as reader:
+        #for line in reader:
+            if (re.search(r"\$\D\w\[\d\]\.\X\=",line_value)):                   #check here
+                line_value=line_value.split()
+                pump_status=line_value[0][-1]
+            elif (int(pump_status)is 1):
+                coord_pump_on(line_value,pump_status)
+            elif (int(pump_status) is 0):
+                coord_pump_off(line_value,pump_staus)
+
+
+            
+            
+
+
+
+
 info_array=convert_dictpara(x,1)
 
 #print(info_array)
