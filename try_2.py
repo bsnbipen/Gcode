@@ -1,16 +1,23 @@
+from scipy.spatial import distance
 import numpy as np
-rg=np.random.default_rng(1)
-a= np.floor(10*rg.random((3,4)))
-#b=np.floor(10*rg.random((3,4)))
-print("a is:",a)
-b=a.copy()
-print("b is:",b)
-print("Is b and a point to the same object?",b is a)
-print("Is the element of b and a same?",b.base is a)
-print("Is the data of b, its own?",b.flags.owndata)
-b=b.reshape((2,6))
-print("a is(after b reshapes):",a)
-print("b is(after reshape):",b)
-b[0,4]=212
-print("b is (after b value changes:)",b)
-print("a is (after b values changes):",a)
+import math
+list_1=[(1,0,0)]
+list_2=[(0,1,0)]
+dm=distance.cdist(list_1,list_2,'euclidean')
+#$print(dm)
+
+
+
+
+constant_print={"layer_height":0.3, 
+"f_layer_height":0.4, 
+"def_layer_width":0.5,
+"rad_filament":3.7, 
+"nozzle_dia":0.5, 
+}
+#print(math.pi*math.pow(constant_print["layer_height"]/2,2))
+#print(constant_print["def_layer_width"])
+
+#area_road=(((constant_print["def_layer_width"]-constant_print["layer_height"])*constant_print["layer_height"])+(math.pi*math.pow(constant_print["layer_height"]/2,2)))
+fil_area=math.pi*math.pow(constant_print["rad_filament"],2)
+print (fil_area)
