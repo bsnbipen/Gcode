@@ -15,8 +15,8 @@ import math
 
 constant_print={"layer_height":0.3, 
 "f_layer_height":0.4, 
-"def_layer_width":0.5,
-"rad_filament":3.7, 
+"def_layer_width":0.6,
+"rad_filament":3.8, 
 "nozzle_dia":0.5, 
 }
 
@@ -28,7 +28,7 @@ constant_speed={
 dict_axes={"X":[],"Y":[],"Z":[]}
 
 
-starting_point=(20,60.176,-3.631)                                           #the starting point for the print---    >Change For each Print<----
+starting_point=(43.699,36.246,-42.695)                                           #the starting point for the print---    >Change For each Print<----
 
 
 list_extrusion=[2]
@@ -134,12 +134,10 @@ def output_line(input_file_location,output_file_location):
                 file.write(stat+"\n")
             for i,line_value in enumerate(reader):                    
                     line_list=line_value.split()
-                    
-                    if (re.search(r"\$\D\w\[\d\]\.X\=",line_value)):                   #check here
-
-
-                        line_value=line_value.split()
-                        pump_status=line_value[0][-1]
+                    if (re.search(r"\$\D\w\[\d\]\.[A-Z]\=",line_list[0])):                   #check here
+                        print(line_list)
+                        pump_status=line_list[0][-1]
+                        
 
 
 
@@ -168,6 +166,7 @@ def output_line(input_file_location,output_file_location):
                             info_gcode=coord_pump_off(line_value,pump_status)
                             axis=["X","Y","Z"]
                             value_dct={v:line_list[(i+1)] for i,v in enumerate(line_list) if v=="X" or v=="Y" or v=="Z"}  
+                            
    
                             if(info_tuple[-2][0]== str(1)):
                          
@@ -178,7 +177,7 @@ def output_line(input_file_location,output_file_location):
 
 
 
-output_line(r"C:\Users\bb237\Gcode\example\conformal_try_1.txt",r"C:\Users\bb237\Gcode\example\output.txt")        #input file location
+output_line(r"C:\Users\bb237\Gcode\Output Example\conformal_for_print.txt",r"C:\Users\bb237\Gcode\Output Example\output.txt")        #input file location,output file location
         #change the output file location
 
 
